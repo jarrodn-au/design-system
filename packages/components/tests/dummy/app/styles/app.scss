@@ -184,3 +184,7 @@ body.dummy-app {
     display: none !important;
   }
 }
+
+[class*="hds-"] {
+  display: none !important;
+}
