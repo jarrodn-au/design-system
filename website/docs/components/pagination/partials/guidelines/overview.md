@@ -1,1 +1,1 @@
-Use Pagination to let users navigate through content broken down into pages. Usually paired with tables, but works with other types of page content.
+Pagination allows users to navigate through the content broken down into pages. Pagination is usually paired with tables but can work with other page content types, such as lists and card grids.

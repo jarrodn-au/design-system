@@ -1,9 +1,8 @@
 ## Anatomy
 
-<!-- image then table -->
 ### Pagination
 
-![Anatomy of the pagination](/assets/components/pagination/pagination-anatomy.png)
+![Anatomy of the pagination](/assets/components/pagination/pagination-anatomy.png =1086x*)
 
 | Element          | Usage                                           |
 |------------------|-------------------------------------------------|
@@ -13,18 +12,18 @@
 
 ### Pagination Nav
 
-![Anatomy of the pagination nav](/assets/components/pagination/pagination-nav-anatomy.png)
+![Anatomy of the pagination nav](/assets/components/pagination/pagination-nav-anatomy.png =1090x*)
 
 | Element          | Usage                                           |
 |------------------|-------------------------------------------------|
 | Prev page        | Required                                        |
 | Next page        | Required                                        |
-| Page number      | Required for Compact, otherwise optional        |
+| Page number      | Required for Numbered, optional otherwise       |
 | Current page     | Required                                        |
 
 ### Pagination Info
 
-![Anatomy of the pagination info](/assets/components/pagination/pagination-info-anatomy.png =20%x20%)
+![Anatomy of the pagination info](/assets/components/pagination/pagination-info-anatomy.png =141x*)
 
 | Element          | Usage                                           |
 |------------------|-------------------------------------------------|
@@ -33,19 +32,9 @@
 
 ### Size Selector
 
-![Anatomy of the size selector](/assets/components/pagination/pagination-size-selector-anatomy.png =25%x25%)
+![Anatomy of the size selector](/assets/components/pagination/pagination-size-selector-anatomy.png =190x*)
 
 | Element          | Usage                                           |
 |------------------|-------------------------------------------------|
 | Label            | Required                                        |
 | Select           | Required                                        |
-
-## States
-
-### Default
-
-![Default states](/assets/components/pagination/pagination-state-default.png)
-
-### Selected
-
-![Default states](/assets/components/pagination/pagination-state-selected.png)

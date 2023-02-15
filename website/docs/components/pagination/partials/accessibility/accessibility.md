@@ -1,29 +1,22 @@
 ## Conformance rating
 
-<!-- Update conformance rating badge with correct status and remove the others -->
 <Doc::Badge @type="success">Conformant</Doc::Badge>
 
 When used as recommended, there should not be any WCAG conformance issues with this component.
 
-## Best practices
+## Keyboard navigation
 
-### Keyboard navigation
+<Doc::Badge @type="neutral">Tab</Doc::Badge>
 
-In most cases, the numbered pagination provides a greater user experience. It allows users to jump between pages and always return to the first page or go to the last page without navigating through the pages manually.
+Move focus between pagination controls.
 
-If your product only has cursor pagination, it won’t be able to support the numbered variant. Only applications with offset pagination can implement the numbered pagination variant.
+![Keyboard navigation](/assets/components/pagination/pagination-keyboard-navigation-01.png =311x*)
 
-Focus and move between pagination controls.
-
-`tab`
-
-![Keyboard navigation](/assets/components/pagination/pagination-keyboard-navigation-01.png =50%x50%)
+<Doc::Badge @type="neutral">Spacebar</Doc::Badge> <Doc::Badge @type="neutral">Enter</Doc::Badge>
 
 Trigger button to navigate to another page.
 
-`enter`
-
-![Keyboard navigation](/assets/components/pagination/pagination-keyboard-navigation-02.png =50%x50%)
+![Keyboard navigation](/assets/components/pagination/pagination-keyboard-navigation-02.png =311x*)
 
 ## Applicable WCAG Success Criteria
 
