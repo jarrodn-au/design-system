@@ -63,17 +63,29 @@ Use the Accordion when the toggle or the content is relatively complex.
 
 The toggle accepts many different types of content, from text-based content to nested HDS components or custom content.
 
-![Example of toggle content](/assets/components/accordion/toggle-content-text.png =690x*)
+- Use a title to give users a clear hint or description of the hidden content.
 
-### Generic content
+- Use a subtitle or badge for metadata.
 
-![Example of toggle content](/assets/components/accordion/toggle-content-custom.png =690x*)
+- Use icons to indicate status or provide extra value to the content.
+
+### Default
+
+![Example of toggle content](/assets/components/accordion/toggle-content-text.png =800x*)
+
+### Custom
+
+![Example of toggle content](/assets/components/accordion/toggle-content-custom.png =800x*)
 
 ### Interactive content
 
-Use `isInteractive` when nesting interactive content on the toggle.
+Use `containsInteractive` when nesting interactive content on the toggle.
 
-![Example of toggle content](/assets/components/accordion/toggle-content-interactive.png =690x*)
+- Use interactive elements sparingly. We recommend limiting interactive content within the toggle to actions only (e.g., buttons and links).
+
+- Try placing interactive elements within the content area when possible. Use this variant when needing to provide actions that can be performed without additional information from the content area.
+
+![Example of toggle content](/assets/components/accordion/toggle-content-interactive.png =800x*)
 
 ## Content type
 
