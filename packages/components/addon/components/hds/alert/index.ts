@@ -18,7 +18,10 @@ export const COLORS = [
   'warning',
   'critical',
 ];
-export const MAPPING_COLORS_TO_ICONS = {
+
+type MapType = { [key: string]: string };
+
+export const MAPPING_COLORS_TO_ICONS: MapType = {
   neutral: 'info',
   highlight: 'info',
   success: 'check-circle',
@@ -30,12 +33,21 @@ const CONTENT_ELEMENT_SELECTOR = '.hds-alert__content';
 const TITLE_ELEMENT_SELECTOR = '.hds-alert__title';
 const DESCRIPTION_ELEMENT_SELECTOR = '.hds-alert__description';
 
-export default class HdsAlertIndexComponent extends Component {
-  @tracked role = 'alert';
-  @tracked ariaLabelledBy;
+export interface AlertSignature {
+  Args: {
+    type: 'page' | 'inline' | 'compact';
+    color?: string;
+    icon?: string | false;
+    onDismiss?: () => false;
+  };
+}
 
-  constructor() {
-    super(...arguments);
+export default class HdsAlertIndexComponent extends Component<AlertSignature> {
+  @tracked role: string = 'alert';
+  @tracked ariaLabelledBy: string | undefined = undefined;
+
+  constructor(owner: unknown, args: AlertSignature['Args']) {
+    super(owner, args);
 
     assert(
       `@type for "Hds::Alert" must be one of the following: ${TYPES.join(
@@ -142,7 +154,7 @@ export default class HdsAlertIndexComponent extends Component {
   }
 
   @action
-  didInsert(element) {
+  didInsert(element: HTMLElement) {
     let actions = element.querySelectorAll(
       `${CONTENT_ELEMENT_SELECTOR} button, ${CONTENT_ELEMENT_SELECTOR} a`
     );
