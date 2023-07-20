@@ -5,7 +5,13 @@
 
 import Component from '@glimmer/component';
 
-export default class HdsPaginationInfoComponent extends Component {
+export interface PaginationInfoSignature {
+  Args: {
+    showTotalItems: boolean;
+  };
+}
+
+export default class HdsPaginationInfoComponent extends Component<PaginationInfoSignature> {
   /**
    * @param showTotalItems
    * @type {boolean}
