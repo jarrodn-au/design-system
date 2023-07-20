@@ -8,6 +8,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { assert } from '@ember/debug';
 import { inject as service } from '@ember/service';
+import RouterService from '@ember/routing/router-service';
 
 // for context about the decision to use these values, see:
 // https://hashicorp.slack.com/archives/C03A0N1QK8S/p1673546329082759
@@ -22,6 +23,7 @@ export const DEFAULT_PAGE_SIZES = [10, 30, 50];
  *
  * @return - array of integers ("pages") + `...` strings ("ellipsis")
  */
+// @ts-ignore
 export const elliptize = ({ pages, current, limit = 7 }) => {
   const length = pages.length;
   const ellipsis = '…';
@@ -62,6 +64,7 @@ export const elliptize = ({ pages, current, limit = 7 }) => {
     const sliceCurr = pages.slice(current - delta - 1, current + delta);
     result = [].concat(
       sliceStart.shift(),
+      // @ts-ignore
       ellipsis,
       sliceCurr,
       ellipsis,
@@ -72,8 +75,34 @@ export const elliptize = ({ pages, current, limit = 7 }) => {
   return result;
 };
 
-export default class HdsPaginationNumberedIndexComponent extends Component {
-  @service router;
+export interface PaginationNumberedSignature {
+  Args: {
+    currentPage: number;
+    currentPageSize: number;
+    showLabels: boolean;
+    showInfo: boolean;
+    showSizeSelector: boolean;
+    showPageNumbers: boolean;
+    isTruncated: boolean;
+    totalItems: number;
+    ariaLabel: string;
+    route: unknown;
+    model: unknown;
+    models: unknown;
+    replace: unknown;
+    queryPrev: unknown;
+    queryNext: unknown;
+    queryPages: unknown;
+    pageSizes: Array<number>;
+    queryFunction: (page: number, currentPage: number | undefined) => true;
+    onPageChange: (page: number, pageSize: number | undefined) => false;
+    onPageSizeChange: (newPageSize: number) => false;
+  };
+}
+
+export default class HdsPaginationNumberedIndexComponent extends Component<PaginationNumberedSignature> {
+  @service declare router: RouterService;
+  @tracked hasRouting: boolean;
 
   // These two private variables are used to differentiate between
   // "uncontrolled" component (where the state is handled internally) and
@@ -92,8 +121,8 @@ export default class HdsPaginationNumberedIndexComponent extends Component {
   showPageNumbers = this.args.showPageNumbers ?? true; // if the "page numbers" block is visible
   isTruncated = this.args.isTruncated ?? true; // if the list of "page numbers" is truncated
 
-  constructor() {
-    super(...arguments);
+  constructor(owner: unknown, args: PaginationNumberedSignature['Args']) {
+    super(owner, args);
 
     let { queryFunction } = this.args;
 
@@ -241,7 +270,7 @@ export default class HdsPaginationNumberedIndexComponent extends Component {
     return this.router.currentRoute?.queryParams || {};
   }
 
-  buildQueryParamsObject(page, pageSize) {
+  buildQueryParamsObject(page: number, pageSize: number) {
     if (this.hasRouting) {
       return this.args.queryFunction(page, pageSize);
     } else {
@@ -255,6 +284,9 @@ export default class HdsPaginationNumberedIndexComponent extends Component {
       model: this.args.model ?? undefined,
       models: this.args.models ?? undefined,
       replace: this.args.replace ?? undefined,
+      queryPrev: this.args.queryPrev ?? undefined,
+      queryNext: this.args.queryNext ?? undefined,
+      queryPages: this.args.queryPages ?? undefined,
     };
 
     // the "query" is dynamic and needs to be calculated
@@ -272,7 +304,9 @@ export default class HdsPaginationNumberedIndexComponent extends Component {
       // (the pages are 1-based while the array would be zero-based)
       routing.queryPages = {};
       this.pages.forEach(
+        // @ts-ignore
         (page) =>
+          // @ts-ignore
           (routing.queryPages[page] = this.buildQueryParamsObject(
             page,
             this.currentPageSize
@@ -281,6 +315,7 @@ export default class HdsPaginationNumberedIndexComponent extends Component {
     } else {
       routing.queryPrev = undefined;
       routing.queryNext = undefined;
+      // @ts-ignore
       routing.queryByPage = {};
     }
 
@@ -296,14 +331,14 @@ export default class HdsPaginationNumberedIndexComponent extends Component {
   }
 
   @action
-  onPageChange(page) {
-    let gotoPageNumber;
+  onPageChange(page: string) {
+    let gotoPageNumber: number;
     if (page === 'prev' && this.currentPage > 1) {
       gotoPageNumber = this.currentPage - 1;
     } else if (page === 'next' && this.currentPage < this.totalPages) {
       gotoPageNumber = this.currentPage + 1;
     } else {
-      gotoPageNumber = page;
+      gotoPageNumber = parseInt(page);
     }
 
     // we want to invoke the `onPageChange` callback only on actual page change
@@ -319,7 +354,7 @@ export default class HdsPaginationNumberedIndexComponent extends Component {
   }
 
   @action
-  onPageSizeChange(newPageSize) {
+  onPageSizeChange(newPageSize: number) {
     let { onPageSizeChange } = this.args;
 
     // we need to manually update the query parameters in the route (it's not a link!)
