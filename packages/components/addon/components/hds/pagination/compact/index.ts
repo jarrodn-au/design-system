@@ -7,12 +7,32 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { assert } from '@ember/debug';
 import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
+import RouterService from '@ember/routing/router-service';
 
-export default class HdsPaginationCompactIndexComponent extends Component {
-  @service router;
+export interface PaginationCompactSignature {
+  Args: {
+    showLabels: boolean;
+    ariaLabel: string;
+    currentPage: string;
+    route: unknown;
+    model: unknown;
+    models: unknown;
+    replace: unknown;
+    queryPrev: unknown;
+    queryNext: unknown;
+    queryFunction: (page: string, currentPage: string | undefined) => true;
+    onPageChange: (page: string) => false;
+  };
+}
 
-  constructor() {
-    super(...arguments);
+export default class HdsPaginationCompactIndexComponent extends Component<PaginationCompactSignature> {
+  @service declare router: RouterService;
+  @tracked hasRouting: boolean;
+  @tracked currentPage: string | undefined;
+
+  constructor(owner: unknown, args: PaginationCompactSignature['Args']) {
+    super(owner, args);
 
     let { queryFunction } = this.args;
 
@@ -60,7 +80,7 @@ export default class HdsPaginationCompactIndexComponent extends Component {
     return this.router.currentRoute?.queryParams || {};
   }
 
-  buildQueryParamsObject(page) {
+  buildQueryParamsObject(page: string) {
     if (this.hasRouting) {
       return this.args.queryFunction(page, this.currentPage);
     } else {
@@ -74,6 +94,8 @@ export default class HdsPaginationCompactIndexComponent extends Component {
       model: this.args.model ?? undefined,
       models: this.args.models ?? undefined,
       replace: this.args.replace ?? undefined,
+      queryPrev: this.args.queryPrev ?? undefined,
+      queryNext: this.args.queryNext ?? undefined,
     };
 
     // the "query" is dynamic and needs to be calculated
@@ -89,7 +111,7 @@ export default class HdsPaginationCompactIndexComponent extends Component {
   }
 
   @action
-  onPageChange(newPage) {
+  onPageChange(newPage: string) {
     this.currentPage = newPage;
 
     let { onPageChange } = this.args;
