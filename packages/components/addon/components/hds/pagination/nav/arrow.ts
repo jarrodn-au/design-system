@@ -9,7 +9,15 @@ import { assert } from '@ember/debug';
 
 export const DIRECTIONS = ['prev', 'next'];
 
-export default class HdsPaginationControlArrowComponent extends Component {
+export interface PaginationNavArrowSignature {
+  Args: {
+    direction: string;
+    showLabel: boolean;
+    onClick: (n: string) => false;
+  };
+}
+
+export default class HdsPaginationControlArrowComponent extends Component<PaginationNavArrowSignature> {
   get content() {
     let { direction } = this.args;
 

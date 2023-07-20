@@ -7,7 +7,15 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { assert } from '@ember/debug';
 
-export default class HdsPaginationControlNumberComponent extends Component {
+export interface PaginationNavNumberSignature {
+  Args: {
+    page: number;
+    isSelected: boolean;
+    onClick: (n: number) => false;
+  };
+}
+
+export default class HdsPaginationControlNumberComponent extends Component<PaginationNavNumberSignature> {
   get page() {
     let { page } = this.args;
 
