@@ -8,7 +8,16 @@ import { assert } from '@ember/debug';
 import { guidFor } from '@ember/object/internals';
 import { action } from '@ember/object';
 
-export default class HdsPaginationSizeSelectorComponent extends Component {
+export interface PaginationSizeSelectorSignature {
+  Args: {
+    pageSizes: Array<Number>;
+    selectedSize: number;
+    label: String;
+    onChange: (n: number) => false;
+  };
+}
+
+export default class HdsPaginationSizeSelectorComponent extends Component<PaginationSizeSelectorSignature> {
   /**
    * Generates a unique ID for the pageSize select
    *
@@ -63,11 +72,11 @@ export default class HdsPaginationSizeSelectorComponent extends Component {
   }
 
   @action
-  onChange(e) {
+  onChange(e: Event) {
     let { onChange } = this.args;
 
-    if (typeof onChange === 'function') {
-      onChange(parseInt(e.target.value));
+    if (typeof onChange === 'function' && e.target) {
+      onChange(parseInt((e.target as HTMLSelectElement).value));
     }
   }
 }
