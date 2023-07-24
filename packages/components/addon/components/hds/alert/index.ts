@@ -174,3 +174,9 @@ export default class HdsAlertIndexComponent extends Component<AlertSignature> {
     }
   }
 }
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    "Hds::Alert": typeof HdsAlertIndexComponent;
+  }
+}
