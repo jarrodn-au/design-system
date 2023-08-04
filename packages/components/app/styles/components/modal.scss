@@ -26,6 +26,10 @@
   &::backdrop {
     display: none;
   }
+
+  &:has(.hds-power-select) {
+    overflow: unset;
+  }
 }
 
 .hds-modal__overlay {
@@ -71,6 +75,10 @@
   padding: 24px;
   overflow-y: auto;
   overscroll-behavior: contain;
+
+  &:has(.hds-power-select) {
+    overflow: unset;
+  }
 }
 
 .hds-modal__footer {

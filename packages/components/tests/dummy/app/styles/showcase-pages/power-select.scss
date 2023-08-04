@@ -9,3 +9,9 @@
 // "ember-power-select" styling to the element
 // (the file is inside the `node_modules`)
 @import "ember-power-select";
+
+// styling tweaks for a more visually pleasant example
+.hds-form-label {
+  margin-top: 12px;
+  margin-bottom: 8px;
+}

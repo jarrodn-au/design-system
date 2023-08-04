@@ -9,6 +9,49 @@
 
 <section data-test-percy>
 
+  <button type="button" {{on "click" (fn this.activateModal "basicModalActive")}}>Open modal with PowerSelect</button>
+
+  {{#if this.basicModalActive}}
+    <Hds::Modal id="basic-modal" @onClose={{fn this.deactivateModal "basicModalActive"}} as |M|>
+      <M.Header>
+        Modal with PowerSelect
+      </M.Header>
+      <M.Body>
+        <p class="hds-typography-body-300 hds-foreground-primary">
+          Aliquam ac enim iaculis, faucibus enim id, dapibus quam. Nunc nibh mi, vehicula sed enim eget, lacinia
+          venenatis tortor. Quisque vitae accumsan est, eu vehicula arcu. Pellentesque ut turpis tortor. Curabitur eu
+          turpis nec tellus vehicula imperdiet finibus in magna. Fusce tincidunt condimentum tristique. Ut mauris enim,
+          finibus pulvinar vulputate at, ultrices ut purus. Aenean tincidunt eros a scelerisque blandit. Praesent vel
+          fermentum velit, nec sodales turpis. Suspendisse ac rhoncus urna. Donec fermentum, justo aliquam facilisis
+          sodales, quam magna pulvinar turpis, ut commodo diam ex ut arcu.
+        </p>
+        <Hds::Form::Label>Server location</Hds::Form::Label>
+        <div class="hds-power-select">
+          <PowerSelect
+            @options={{@model.OPTIONS}}
+            @selected={{@model.SELECTED}}
+            @onChange={{this.noop}}
+            @renderInPlace={{true}}
+            as |option|
+          >
+            {{option}}
+          </PowerSelect>
+        </div>
+        <!--Hds::Form::Select::Field as |F|>
+          <F.Label>Server location</F.Label>
+          <F.Options>
+            {{#each @model.OPTIONS as |item|}}
+              <option value={{item}}>{{item}}</option>
+            {{/each}}
+          </F.Options>
+        </Hds::Form::Select::Field-->
+      </M.Body>
+      <M.Footer as |F|>
+        <Hds::Button type="button" @text="Confirm" {{on "click" F.close}} />
+      </M.Footer>
+    </Hds::Modal>
+  {{/if}}
+
   <Shw::Text::H2>Single selection</Shw::Text::H2>
 
   <Shw::Text::H3>Interaction</Shw::Text::H3>
