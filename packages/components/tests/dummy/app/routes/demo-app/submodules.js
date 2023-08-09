@@ -8,6 +8,10 @@ import Route from '@ember/routing/route';
 export default class DemoAppSubmodulesRoute extends Route {
   model(params) {
     // console.log('params', params);
-    return {};
+    return {
+      submodule_id: params.submodule_id,
+      aaa: 'AAA',
+      bbb: 'BBB',
+    };
   }
 }

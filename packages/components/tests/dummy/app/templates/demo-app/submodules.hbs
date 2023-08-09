@@ -52,6 +52,17 @@
         </div>
       </PH.Title>
     </Hds::PageHeader>
+
+    <Hds::Tabs @onClickTab={{@persistActiveTab}} as |T|>
+      {{#each this.tabs as |tab|}}
+        <T.Tab @count={{tab.count}} @isSelected={{eq @tab tab.key}} data-tab-key={{tab.key}} data-test-tab={{tab.key}}>
+          {{tab.title}}
+        </T.Tab>
+        <T.Panel>
+          {{component tab.component module=@module submodule=@submodule data-test-tab-component=tab.key}}
+        </T.Panel>
+      {{/each}}
+    </Hds::Tabs>
     <div>
 
     </div>
