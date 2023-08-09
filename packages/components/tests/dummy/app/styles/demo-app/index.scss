@@ -1,0 +1,62 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
+// DEMO APP
+
+body.demo-app {
+  // we remove the grid layout
+  display: initial;
+
+  // we hide the "show" frame elements
+  .shw-page-header,
+  .shw-page-aside {
+    display: none;
+  }
+
+  .shw-page-main {
+    display: contents;
+    padding: 0 !important;
+  }
+
+  .hds-app-frame__main {
+    padding: 48px 96px;
+  }
+
+  .demo-app-page-header-title {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  // FAKE ELEMENTS
+
+  .demo-app-fake-org-switcher {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 36px;
+    padding: 0 12px;
+    color: var(--token-color-palette-neutral-300);
+    font-weight: 400;
+    font-size: var(--token-typography-body-200-font-size);
+    font-family: var(--token-typography-body-200-font-family);
+    line-height: var(--token-typography-body-200-line-height);
+    text-align: left;
+    background-color: var(--token-color-palette-neutral-700);
+    border: 1px solid var(--token-color-palette-neutral-500);
+    border-radius: 5px;
+    box-shadow: none;
+
+    .flight-icon {
+      flex: none;
+    }
+
+    span {
+      flex: 1 1 auto;
+      margin-right: auto;
+      margin-left: 6px;
+    }
+  }
+}
