@@ -73,4 +73,7 @@ Router.map(function () {
   this.route('overrides', function () {
     this.route('power-select');
   });
+  this.route('demo-app', function () {
+    this.route('sub-page');
+  });
 });
