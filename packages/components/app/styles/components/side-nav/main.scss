@@ -24,14 +24,14 @@
       var(--hds-app-sidenav-animation-easing);
   }
 
-  // mobile
-  &.hds-side-nav--is-mobile {
-    width: var(--hds-app-sidenav-width-minimized);
-  }
-
   // desktop
   &.hds-side-nav--is-desktop {
     width: var(--hds-app-sidenav-width-expanded);
+  }
+
+  // mobile
+  &.hds-side-nav--is-mobile {
+    width: var(--hds-app-sidenav-width-minimized);
   }
 }
 
@@ -66,10 +66,19 @@
 
 .hds-side-nav__menu-toggle-button {
   position: absolute;
+  top: -2px;
   z-index: 1;
+  width: 36px;
+  height: 36px;
+  padding: 5px;
   color: var(--token-color-foreground-high-contrast);
   background: none;
+  background-color: var(--token-color-foreground-primary);
   border: 1px solid transparent;
+  border-radius: 5px;
+  transform:
+    translateX(calc(var(--hds-app-sidenav-width-expanded) + 8px))
+    translateY(24px);
   cursor: pointer;
   transition-timing-function: var(--hds-app-sidenav-animation-easing);
   transition-duration: var(--hds-app-sidenav-animation-duration);
@@ -93,11 +102,11 @@
 
   // by default it's styled as "close" button
   .hds-side-nav--is-mobile & {
-    width: 24px;
-    height: 24px;
-    padding: 1px;
+    width: 36px;
+    height: 36px;
+    padding: 5px;
     background-color: var(--token-color-foreground-primary);
-    border-radius: 3px;
+    border-radius: 5px;
     transform:
       translateX(calc(var(--hds-app-sidenav-width-expanded) + 8px))
       translateY(24px);
@@ -115,7 +124,7 @@
 
   // when it's desktop we _never_ want to show the menu/toggle button
   .hds-side-nav--is-desktop & {
-    display: none;
+    // display: none;
   }
 }
 

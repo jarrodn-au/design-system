@@ -11,7 +11,7 @@ import { registerDestructor } from '@ember/destroyable';
 
 export default class HdsSideNavComponent extends Component {
   @tracked isResponsive = this.args.isResponsive ?? true;
-  @tracked isMinimized = this.isResponsive; // we set it minimized by default so that if we switch viewport from desktop to mobile its already minimized
+  @tracked isMinimized = false; // we set it minimized by default so that if we switch viewport from desktop to mobile its already minimized
   @tracked isAnimating = false;
   @tracked isDesktop = true;
   hasA11yRefocus = this.args.hasA11yRefocus ?? true;
@@ -40,7 +40,7 @@ export default class HdsSideNavComponent extends Component {
     document.addEventListener('keydown', this.escapePress, true);
     this.desktopMQ.addEventListener('change', this.updateDesktopVariable, true);
     // set initial state based on viewport
-    this.updateDesktopVariable({ matches: this.desktopMQ.matches });
+    // this.updateDesktopVariable({ matches: this.desktopMQ.matches });
   }
 
   removeEventListeners() {
@@ -82,6 +82,7 @@ export default class HdsSideNavComponent extends Component {
     }
     if (this.isMinimized) {
       classes.push('hds-side-nav--is-minimized');
+      classes.push('hds-side-nav--is-mobile');
     } else {
       classes.push('hds-side-nav--is-not-minimized');
     }
@@ -125,7 +126,7 @@ export default class HdsSideNavComponent extends Component {
 
   @action
   updateDesktopVariable(event) {
-    this.isDesktop = event.matches;
+    this.isDesktop = false;
 
     let { onDesktopViewportChange } = this.args;
 
