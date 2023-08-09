@@ -13,7 +13,7 @@ export default class SubmodulesController extends Controller {
   @tracked tab = 'readme';
 
   get tabs() {
-    console.log(this.model);
+    console.log('get tabs() invoked with model', this.model);
     return [
       {
         key: 'readme',

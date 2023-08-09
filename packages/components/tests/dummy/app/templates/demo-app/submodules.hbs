@@ -53,6 +53,8 @@
       </PH.Title>
     </Hds::PageHeader>
 
+    <pre>this.tab = {{this.tab}}</pre>
+
     <Hds::Tabs @onClickTab={{@persistActiveTab}} as |T|>
       {{#each this.tabs as |tab|}}
         <T.Tab @count={{tab.count}} @isSelected={{eq @tab tab.key}} data-tab-key={{tab.key}} data-test-tab={{tab.key}}>

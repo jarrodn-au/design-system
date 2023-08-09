@@ -2,6 +2,15 @@
   Copyright (c) HashiCorp, Inc.
   SPDX-License-Identifier: MPL-2.0
 }}
+
+<pre>[Tabs] this.initialTabIndex = {{this.initialTabIndex}}</pre>
+<pre>[Tabs] this.selectedTabIndex = {{this.selectedTabIndex}}</pre>
+<pre>---</pre>
+<pre>[Tabs] this.tabNodesLength = {{this.tabNodesLength}}</pre>
+<pre>[Tabs] this.panelNodesLength = {{this.panelNodesLength}}</pre>
+<pre>[Tabs] this.tabIdsLength = {{this.tabIdsLength}}</pre>
+<pre>[Tabs] this.panelIdsLength = {{this.panelIdsLength}}</pre>
+
 {{! template-lint-disable no-invalid-role }}
 <div class="hds-tabs" {{did-insert this.didInsert}} ...attributes>
   <div class="hds-tabs__tablist-wrapper">

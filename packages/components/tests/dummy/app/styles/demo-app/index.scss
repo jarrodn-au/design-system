@@ -30,6 +30,20 @@ body.demo-app {
     align-items: center;
   }
 
+  .hds-page-header {
+    z-index: 1; // temp fix
+  }
+
+  .hds-tabs__tab {
+    flex-direction: column;
+    align-items: start;
+    height: auto;
+
+    pre {
+      margin: 0;
+    }
+  }
+
   // FAKE ELEMENTS
 
   .demo-app-fake-org-switcher {

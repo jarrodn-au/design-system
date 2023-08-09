@@ -15,8 +15,25 @@ export default class HdsTabsIndexComponent extends Component {
   @tracked panelIds = [];
   @tracked selectedTabIndex;
 
+  get tabNodesLength() {
+    return this.tabNodes.length;
+  }
+
+  get panelNodesLength() {
+    return this.panelNodes.length;
+  }
+
+  get tabIdsLength() {
+    return this.tabIds.length;
+  }
+
+  get panelIdsLength() {
+    return this.panelIds.length;
+  }
+
   @action
   didInsert() {
+    console.log('Tabs didInsert() invoked');
     // default starting tab index
     let initialTabIndex = 0;
     let selectedCount = 0;
@@ -40,12 +57,14 @@ export default class HdsTabsIndexComponent extends Component {
 
   @action
   didInsertTab(element) {
+    console.log('Tabs didInsertTab() invoked', element.id);
     this.tabNodes = [...this.tabNodes, element];
     this.tabIds = [...this.tabIds, element.id];
   }
 
   @action
   didInsertPanel(panelId, element) {
+    console.log('Tabs didInsertPanel() invoked', panelId);
     this.panelNodes = [...this.panelNodes, element];
     this.panelIds = [...this.panelIds, panelId];
   }

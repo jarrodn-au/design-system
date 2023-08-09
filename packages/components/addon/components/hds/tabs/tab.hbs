@@ -4,6 +4,9 @@
 }}
 {{! template-lint-disable require-context-role no-invalid-role }}
 <li class={{this.classNames}} ...attributes role="presentation">
+  <pre>[TAB] tabId = {{this.tabId}}</pre>
+  <pre>[TAB] nodeIndex = {{this.nodeIndex}}</pre>
+  <pre>[TAB] panelId = {{this.panelId}}</pre>
   <button
     class="hds-tabs__tab-button hds-typography-body-200 hds-font-weight-medium"
     role="tab"

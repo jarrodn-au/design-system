@@ -47,6 +47,7 @@ export default class HdsTabsIndexComponent extends Component {
 
   @action
   didInsertNode() {
+    console.log('Tab didInsertNode() invoked');
     let { didInsertNode } = this.args;
 
     if (typeof didInsertNode === 'function') {
