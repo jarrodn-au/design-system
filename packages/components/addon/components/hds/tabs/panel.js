@@ -46,4 +46,14 @@ export default class HdsTabsIndexComponent extends Component {
       didInsertNode(this.elementId, ...arguments);
     }
   }
+
+  @action
+  willDestroyNode() {
+    console.log('Panel willDestroyNode() invoked');
+    let { willDestroyNode } = this.args;
+
+    if (typeof willDestroyNode === 'function') {
+      willDestroyNode(...arguments);
+    }
+  }
 }
