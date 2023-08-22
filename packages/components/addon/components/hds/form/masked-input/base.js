@@ -24,36 +24,6 @@ export default class HdsFormMaskedInputBaseComponent extends Component {
   }
 
   /**
-   * @param ariaLabel
-   * @type {string}
-   * @default 'Show masked content'
-   */
-  get ariaLabel() {
-    if (this.args.ariaLabel) {
-      return this.args.ariaLabel;
-    } else if (this.isMasked) {
-      return 'Show masked content';
-    } else {
-      return 'Hide masked content';
-    }
-  }
-
-  /**
-   * @param ariaMessageText
-   * @type {string}
-   * @default ''
-   */
-  get ariaMessageText() {
-    if (this.args.ariaMessageText) {
-      return this.args.ariaMessageText;
-    } else if (this.isMasked) {
-      return 'Input content is now hidden';
-    } else {
-      return 'Input content is now visible';
-    }
-  }
-
-  /**
    * Get the class names to apply to the component.
    * @method classNames
    * @return {string} The "class" attribute to apply to the component.

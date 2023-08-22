@@ -21,14 +21,11 @@
       ...attributes
     />
   {{/if}}
-  <button
-    class="hds-form-masked-input__toggle-button"
-    type="button"
-    aria-label={{this.ariaLabel}}
+  <Hds::VisibilityToggle
+    @isMasked={{this.isMasked}}
+    @ariaLabel={{@ariaLabel}}
+    @ariaMessageText={{@ariaMessageText}}
     aria-controls={{this.id}}
     {{on "click" this.onClickToggle}}
-  >
-    <FlightIcon @name={{if this.isMasked "eye" "eye-off"}} @size="16" @isInlineBlock={{false}} />
-    <span class="sr-only" aria-live="polite">{{this.ariaMessageText}}</span>
-  </button>
+  />
 </div>
