@@ -1,5 +1,14 @@
 # @hashicorp/design-system-components
 
+## 2.10.1
+
+### Patch Changes
+
+- [#1577](https://github.com/hashicorp/design-system/pull/1577) [`8aa9a5889`](https://github.com/hashicorp/design-system/commit/8aa9a5889cf14fc28100a462dfd42754a3bdb42b) Thanks [@DingoEatingFuzz](https://github.com/DingoEatingFuzz)! - Remove aria-hidden from the "optional" span in Form::Indicator
+
+- Updated dependencies []:
+  - @hashicorp/ember-flight-icons@3.1.1
+
 ## 2.10.0
 
 ### Minor Changes

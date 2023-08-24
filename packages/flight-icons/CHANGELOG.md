@@ -1,5 +1,11 @@
 # @hashicorp/flight-icons
 
+## 2.18.0
+
+### Minor Changes
+
+- [#1585](https://github.com/hashicorp/design-system/pull/1585) [`232510a52`](https://github.com/hashicorp/design-system/commit/232510a529621114dd605b741f0fe5f571b2cb56) Thanks [@hashibot-hds](https://github.com/hashibot-hds)! - Add `Vercel` and `Jira` icons
+
 ## 2.17.0
 
 ### Minor Changes
